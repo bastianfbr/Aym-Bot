@@ -1,0 +1,12 @@
+#packages
+
+node_modules/
+
+#data_files
+
+data/
+
+# config
+
+config.json
+deploy-commands.js
