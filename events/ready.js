@@ -8,13 +8,11 @@ module.exports = {
     name: 'ready',
     once: true,
     async execute(client) {
-        // Connexion à la DB
-
         await client_db.connect();
         console.log("Connecté au serveur MongoDB");
 
-        const bots = client.channels.cache.get("484324090480558081");
-        const recrutements = client.channels.cache.get("777221167727640606");
+        const bots = client.channels.cache.get("936928080444932165");
+        const recrutements = client.channels.cache.get("936928081409613839");
         moment.locale("fr");
         let date_now = moment();
         let date_now_m = date_now.clone().format("L");

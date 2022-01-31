@@ -22,31 +22,31 @@ module.exports = {
 
         } else if (interaction.isButton()) {
             // si un bouton est actionné en dehors du channel tests-bots-stage, ne rien faire
-            if (interaction.channelId !== "850310846605557771") return; 
+            if (interaction.channelId !== "936928081409613840") return; 
             await interaction.deferUpdate({ ephemeral: true });
             const member = interaction.member;
             // chercher le rôle correspondant au customID du bouton pour le rajouter ou le supprimer au membre
             const r = interaction.guild.roles.cache.find((r) => r.name === interaction.customId);
                 if (member.roles.cache.some(role => role.id === r.id)) {
                     member.roles.remove(r.id);
-                    await interaction.followUp({ content: `<a:cross:709042197697265685> Le rôle <@&${r.id}> vous a été retiré`, ephemeral: true, components: [] });
+                    await interaction.followUp({ content: `<a:cross:937407398119899187> Le rôle <@&${r.id}> vous a été retiré`, ephemeral: true, components: [] });
                 } else {
                     member.roles.add(r.id);
-                    await interaction.followUp({ content: `<a:check:709042204479324190> Le rôle <@&${r.id}> vous a été ajouté`, ephemeral: true, components: [] });
+                    await interaction.followUp({ content: `<a:check:937407397050335272> Le rôle <@&${r.id}> vous a été ajouté`, ephemeral: true, components: [] });
                 }
 
             // si l'interaction est un menu
 
         } else if (interaction.isSelectMenu()) {
             // si un menu est utilisé en dehors du channel tests-bots-stage, ne rien faire
-            if (interaction.channelId !== "850310846605557771") return;
+            if (interaction.channelId !== "936928081409613840") return;
             // chercher le rôle correspondant à la valeur du menu
             if (interaction.customId === 'niveau') {
                 const r = interaction.guild.roles.cache.find((r) => r.name === interaction.values.toString());
                 const member = interaction.member
                 let rem = ""
                 let rep = 0;
-                let roles_niv = ["775340085452996618", "458346431422529547", "458346430827069450", "458346430726144010", "458346430436737055", "458346430382473217", "458347011499098132", "458347012467720194", "458347013050728448", "461226295099916289", "461226296781963274", "461226298748960818", "458347015357726731", "461616230755729418", "793128547224649738"]
+                let roles_niv = ["936928079899668484", "936928079899668485", "936928079899668486", "936928079929024516", "936928079929024517", "936928079929024518", "936928079929024513", "936928079929024514", "936928079929024515", "936928079899668487", "936928079899668488", "936928079899668489", "936928079929024519", "936928079929024520", "936928079929024521"]
                 // Parcours des rôles grâce à la list roles_niv pour comprendre quel rôle retirer puis ajout du rôle cherché précédemment avec le menu
                 for (let index = 0; index < roles_niv.length; index++) {
                     if (member.roles.cache.some(role => role.id === roles_niv[index])) {

@@ -14,35 +14,35 @@ Aym'aide est un serveur français :flag_fr:, vous retrouverez ci-dessous un
 tableau avec les niveaux similaires dans d'autres pays francophones
 (n'hésitez pas à cliquer sur l'image pour l'avoir en plus grand).
 
-Si vous faites parti du <@&793128547224649738> , merci de bien vouloir
+Si vous faites parti du <@&936928079929024521> , merci de bien vouloir
 cliquer sur le bouton :triangular_flag_on_post: en dessous de ce message.`)
             .setColor("ED4245")
             .setImage("https://cdn.discordapp.com/attachments/793142615188701234/793143238411812874/2k1Al5w.png")
         let embed2 = new MessageEmbed()
             .setTitle(":warning: Merci de bien vouloir sélectionner un seul rôle de niveau parmi ceux proposé ci-dessous !")
             .setDescription(`Collège
-    :green_book: <@&458346431879577610>
-    :orange_book: <@&458346431422529547>
-    :closed_book: <@&458346430827069450>
+    :green_book: <@&936928079899668484>
+    :orange_book: <@&936928079899668485>
+    :closed_book: <@&936928079899668486>
 
 Lycée Général et Technologique
-    :second_place: <@&458346430726144010>
-    :first_place: <@&458346430436737055>
-    :books: <@&458346430382473217>
+    :second_place: <@&936928079929024516>
+    :first_place: <@&936928079929024517>
+    :books: <@&936928079929024518>
 
 Lycée Professionnel
-    :newspaper: <@&458347011499098132>
-    :page_facing_up: <@&458347012467720194>
-    :page_with_curl: <@&458347013050728448>
+    :newspaper: <@&936928079929024513>
+    :page_facing_up: <@&936928079929024514>
+    :page_with_curl: <@&936928079929024515>
 
 Lycée Agricole
-    :house_abandoned: <@&461226295099916289>
-    :house: <@&461226296781963274>
-    :house_with_garden: <@&461226298748960818>
+    :house_abandoned: <@&936928079899668487>
+    :house: <@&936928079899668488>
+    :house_with_garden: <@&936928079899668489>
 
 Etudes Supérieures ou au dessus
-    :frame_photo: <@&458347015357726731>
-    :computer: <@&461616230755729418>`)
+    :frame_photo: <@&936928079929024519>
+    :computer: <@&936928079929024520>`)
             .setColor("CD6F57")
         let embed3 = new MessageEmbed()
             .setTitle("✨ Sélectionner vos rôles de matières !")
@@ -113,9 +113,9 @@ Les demandes inopinées d’aide en MP pourront être sanctionnées.`
                 {
                     name: "6️⃣ Publicités et Partenariats",
                     value: `Concernant les publicités, celles-ci peuvent être acceptées si elles sont motivées et validées auprès du Staff. Elles seront alors publiées dans vos-projets.
-Vous pouvez contacter n’importe quel membre du staff (<@&408261421894205440>, <@&409340879518826498> ou <@&640153738744692766>)
+Vous pouvez contacter n’importe quel membre du staff (<@&936928079996153864>, <@&936928080012906558> ou <@&936928080012906559>)
 
-Concernant les partenariats, il faudra suivre une autre démarche. Nous vous demandons alors de contacter le <@&640153738744692766> en présentant de manière motivée votre projet.`
+Concernant les partenariats, il faudra suivre une autre démarche. Nous vous demandons alors de contacter le <@&936928080012906559> en présentant de manière motivée votre projet.`
                 },
                 {
                     name: "7️⃣ Médiation et sanctions",
@@ -134,10 +134,10 @@ Cependant, ne pouvant pas traduire toutes les situations possibles dans un règl
                     name: "8️⃣ Association, adhésion et documents officiels",
                     value: `Ce Discord est le Discord officiel de l’Association Aym’aide. 
 
-Vous pouvez retrouver certaines informations dans le salon <#822188749865222144>.
-Également, c’est là-bas que vous retrouverez le formulaire d’adhésion (simple membre associatif) ou encore le formulaire de recrutement pour devenir <@&699538325341601802> (adhésion obligatoire, aidant reconnu-e par l’Association ayant un poids associatif).
+Vous pouvez retrouver certaines informations sur https://aymaide.fr/
+Également, c’est là-bas que vous retrouverez le formulaire d’adhésion (simple membre associatif) ou encore le formulaire de recrutement pour devenir <@&936928079996153857> (adhésion obligatoire, aidant reconnu-e par l’Association ayant un poids associatif).
 
-Pour plus d’informations ou encore toute demande de documents, merci de vous adresser au <@&640153738744692766> ou d’envoyer un mail à assoaymaide@gmail.com .`
+Pour plus d’informations ou encore toute demande de documents, merci de vous adresser au <@&936928080012906559> ou d’envoyer un mail à assoaymaide@gmail.com .`
                 }
             )
         const row1 = new MessageActionRow()
