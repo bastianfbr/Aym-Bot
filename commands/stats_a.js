@@ -19,16 +19,9 @@ module.exports = {
         let rolen_list = ["936928079899668484", "936928079899668485", "936928079899668486", "936928079929024516", "936928079929024517", "936928079929024518", "936928079929024513", "936928079929024514", "936928079929024515", "936928079899668487", "936928079899668488", "936928079899668489", "936928079929024519", "936928079929024520", "936928079929024521"]
         let emojim_list = ["<:peepoLeveLaMain:937409115553169429>", "🇩🇪", "🇺🇸", "🇸🇦", "🎨", "🇰🇷", "📈", "🇪🇸", "📚", "🏰", "💻", "🇯🇵", "📐", "📜", "🔬" ]
         let emojin_list = ['📗', '📙', '📕', '🥈', '🥇', '📚', '📰', '📄', '📃', '🏚️', '🏠', '🏡', '🖼️', '💻', '🚩']
-        let bot_map = [];
-        let bot_map_size = 0;
         const ListEmbed = new MessageEmbed()
-        .setColor("3983BC")
-        guild.members.fetch()
-        .then(member => {
-            bot_map = member.map(m => m.user.bot);
-            bot_map_size = bot_map.filter(m => m === true).length;
-            ListEmbed.setTitle(`Stats du serveur (${guild.memberCount - bot_map_size} membres et ${bot_map_size} bots)`)
-        })
+            .setTitle(`Stats du serveur (${guild.memberCount} membres)`)
+            .setColor("3983BC")
         let role_perc = 0;
         let role_count = "";
         await interaction.deferReply({ content: 'Voici les stats !', ephemeral: false, embeds: [ListEmbed] });
