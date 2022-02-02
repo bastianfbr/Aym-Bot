@@ -48,7 +48,6 @@ module.exports = {
         const action = interaction.options.getString('action');
         const membre = interaction.options.getMember('membre');
         const raison = interaction.options.getString('raison');
-        const arc_channel = interaction.client.channels.cache.get("912112239081836554");
         const action_embed = new MessageEmbed()
             .setTitle(`Nouvelle action`)
             .setColor("3983BC")
@@ -63,10 +62,12 @@ module.exports = {
         switch (action) {
             case "ban":
                 console.log("bannnnnnnnnn");
+                col.insertOne({user: membre.id, action: action, date: moment().format('L'), text: raison});
                 // membre.ban();
                 break;
         
             case "mute":
+                col.insertOne({user: membre.id, action: action, date: moment().format('L'), text: raison});
                 console.log("muuuuuuuuute");
                 break;
             
@@ -76,7 +77,10 @@ module.exports = {
                 console.log("waaaaaaaaarn");
         }
         console.log(membre.user.id);
-        await interaction.editReply({content : `Action réalisée\nSanction enregistrée dans <#912112239081836554>`, embeds: [action_embed]});
+        await interaction.editReply({content : `Action réalisée\nSanction enregistrée dans <#937311942702428200>`, embeds: [action_embed]});
+        const arc_channel = interaction.client.channels.cache.find(x => x.id === "937311942702428200");
+        arc_channel.setArchived(false);
+        arc_channel.send({content: " ", embeds: [action_embed]});
     } else {
         let page = 1;
         let array = await col.find({}).toArray();
@@ -95,11 +99,12 @@ module.exports = {
             )
             // let array_2 = array;
         array.forEach(r => {
+            // si il y a moins de 24 fields, en ajouter 3
             if (Object.keys(list_embed.fields).length < 24) {
                 list_embed.addFields(
-                {name: "Utilisateur", value: "<@" + r.user + ">", inline:true},
+                {name: `Utilisateur (${r.action})`, value: "<@" + r.user + ">", inline:true},
                 {name: "Date", value: r.date, inline: true},
-                {name: "Raison", value: r.text, inline: true}
+                {name: `Raison de ${r.action}`, value: r.text, inline: true},
             )
                 interaction.editReply({content: `Voici la page ${page} ${interaction.member.toString()}`, embeds: [list_embed]});
             } else {
@@ -112,6 +117,7 @@ module.exports = {
         });
 
         const collector = interaction.channel.createMessageComponentCollector({});
+        let bool = true;
         collector.on('collect', async i => {
             let list_embed = new MessageEmbed()
             .setTitle(`Liste des sanctions`)
@@ -130,14 +136,19 @@ module.exports = {
                 {name: "Date", value: r.date, inline: true},
                 {name: "Raison", value: r.text, inline: true}
             )
-                interaction.editReply({content: `Regarde dans la console ${interaction.member.toString()}`, ephemeral: true, embeds: [list_embed]});
-            } else {
-                page = page + 1;
-                list_embed.setFooter({text: `Page ${page}`, iconURL: interaction.member.user.avatarURL()});
-                interaction.editReply({content: `Regarde dans la console ${interaction.member.toString()}`, ephemeral: true, embeds: [list_embed], components: [buttons]});
-                return;
             }
         });
+            if (Object.keys(list_embed.fields).length !== 0){
+                page = page + 1;
+                list_embed.setFooter({text: `Page ${page}`, iconURL: interaction.member.user.avatarURL()});
+                interaction.editReply({content: `Voici la page ${page} ${interaction.member.toString()}`, ephemeral: true, embeds: [list_embed], components: [buttons]});
+                if (bool === false) {
+                    i.deferReply({content: "Chargement", ephemeral: true});
+                    bool = true;
+                }
+            } else {
+                i.reply({content: "Fin de la liste des sanctions", ephemeral: true});
+            }
         }
     });
         /*console.log(col.find({}).toArray(function (err, result) {
@@ -147,6 +158,5 @@ module.exports = {
             console.log(result.map(result => result.text));
         })); */
     }
-        // arc_channel.send({content: " ", embeds: [action_embed]});
     },
 }
