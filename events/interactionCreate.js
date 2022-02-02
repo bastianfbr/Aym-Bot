@@ -22,7 +22,7 @@ module.exports = {
 
         } else if (interaction.isButton()) {
             // si un bouton est actionné en dehors du channel tests-bots-stage, ne rien faire
-            if (interaction.channelId !== "936928081409613840") return; 
+            if (interaction.channelId !== "936928081409613840") return;
             await interaction.deferUpdate({ ephemeral: true });
             const member = interaction.member;
             // chercher le rôle correspondant au customID du bouton pour le rajouter ou le supprimer au membre
