@@ -5,13 +5,13 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('stats')
-        .setDescription('En construction')
+        .setDescription('envoie les stats des membres du serveur')
         .addStringOption(option =>
             option.setName('type')
                 .setDescription('Le type de stats')
                 .setRequired(true)
                 .addChoice('matieres', 'matieres')
-                .addChoice('niveau', 'niveau')),
+                .addChoice('niveaux', 'niveaux')),
     async execute(interaction) {
         const string = interaction.options.getString('type');
         const guild = interaction.guild;
