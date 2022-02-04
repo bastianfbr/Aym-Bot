@@ -1,7 +1,7 @@
 // Quand le bot est connecté --> prêt
 let moment = require("moment");
 const { MongoClient } = require("mongodb");
-const { mongo } = require('../config.json');
+const { mongo, ready } = require('../config.json');
 const client_db = new MongoClient(mongo);
 
 module.exports = {
@@ -10,7 +10,6 @@ module.exports = {
     async execute(client) {
         await client_db.connect();
         console.log("Connecté au serveur MongoDB");
-
         const bots = client.channels.cache.get("936928080444932165");
         const recrutements = client.channels.cache.get("936928081409613839");
         moment.locale("fr");
@@ -43,7 +42,7 @@ Hey ! N'oublie pas que tu peux effectuer la commande **!d bump** et **d! bump**.
             }
         }, 7200000), // 2 heures = 7200000 ms
         console.log(`Prêt ! Connecté en tant que ${client.user.tag}`);
-        client.user.setActivity('MongoDB 💾🥭');
+        client.user.setActivity(ready);
         // 🤖 Faire chier Badmax
         await client_db.close()
     }
