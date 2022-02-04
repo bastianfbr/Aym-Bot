@@ -8,6 +8,12 @@ module.exports = {
         if (interaction.isCommand()) {
 
             const command = interaction.client.commands.get(interaction.commandName);
+            let cmd_mod = ["mod"];
+            // si c'est une commande de modération et que le membre n'a pas les perms de gestion de rôles (modos)
+            if ((command.data.name === "mod") && (!interaction.memberPermissions.has("MANAGE_ROLES"))) {
+                await interaction.reply({ content: "Tu n'es pas un modérateur, fais pas n'importe quoi !", ephemeral: true });
+                return;
+            }
 
             if (!command) return;
 
@@ -21,8 +27,8 @@ module.exports = {
             // si l'interaction est un bouton
 
         } else if (interaction.isButton()) {
-            // si un bouton est actionné en dehors du channel tests-bots-stage, ne rien faire
-            if (interaction.channelId !== "936928081409613840") return; 
+            // si un bouton est actionné ailleurs que dans #obtenir-un-role, faire...
+            if (interaction.channelId !== "936928080193265698") return; 
             await interaction.deferUpdate({ ephemeral: true });
             const member = interaction.member;
             // chercher le rôle correspondant au customID du bouton pour le rajouter ou le supprimer au membre
