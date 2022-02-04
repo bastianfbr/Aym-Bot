@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, MessageActionRow, MessageButton} = require('discord.js');
+const { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu} = require('discord.js');
 const { MongoClient } = require("mongodb");
 const { mongo } = require('../config.json');
 const client_db = new MongoClient(mongo);
@@ -50,12 +50,58 @@ module.exports = {
         const type = interaction.options.getString('type');
         let liste_choix = [choix1, choix2, choix3, choix4, choix5];
         let emoji_choix = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"]
+        const row = new MessageActionRow()
 
         if (type === "vote_majorite") {
             liste_choix = ["Pour", "Contre", "Abstention", "Ne prend pas part au vote"];
             emoji_choix = ["✅", "❌", "⬜", "🏳️"]
-        }
+        } else {
+            liste_choix = [choix1, choix2, choix3, choix4, choix5];
+            let nope = 0;
+            liste_choix = liste_choix.map(function(c) {
+            if (c === null) {
+                if (nope > 0) return "Non défini";
+                nope = nope + 1;
+                return "Indéfini";
+            }
+            return c;
+            })
+            console.log(liste_choix);
 
+            row.addComponents(
+				new MessageSelectMenu()
+					.setCustomId('borda')
+					.setPlaceholder('Choisis 3 choix')
+					.setMinValues(3)
+					.setMaxValues(3)
+                    .addOptions({
+                        label: liste_choix[0],
+                        description: "1️⃣" + liste_choix[0],
+                        value: liste_choix[0],
+                    },
+                    {
+                        label: liste_choix[1],
+                        description: "2️⃣" + liste_choix[1],
+                        value: liste_choix[1],
+                    },
+                    {
+                        label: liste_choix[2],
+                        description: "3️⃣" + liste_choix[2],
+                        value: liste_choix[2],
+                    },
+                    {
+                        label: liste_choix[3],
+                        description: "4️⃣" + liste_choix[3],
+                        value: liste_choix[3],
+                    },
+                    {
+                        label: liste_choix[4],
+                        description: "5️⃣" + liste_choix[4],
+                        value: liste_choix[4],
+                    })
+            )
+            console.log(liste_choix.filter(c => c !== null));
+        }
         // Selection de la Db et de la collection
         const dbName = "sondageDB"
         const db = await client_db.db(dbName);
@@ -71,22 +117,23 @@ module.exports = {
         const embedTotal = new MessageEmbed()
             .setTitle(`Résultats du sondage :`)
             .setColor("43B581")
-        const row = new MessageActionRow()
         let total = [];
         for (let index = 0; index < liste_choix.length; index++) {
-            if (liste_choix[index] !== null) {
+            if (liste_choix[index] !== null || liste_choix[index] !== "Indéfini" || liste_choix[index] !== "Non défini") {
                 total.push(0);
                 embedChoix.addFields({ name: `Choix ${emoji_choix[index]}`, value: liste_choix[index], inline: true});
                 embedTotal.addFields({ name: liste_choix[index], value: total[index].toString() + " votes", inline: true });
                 
+            if (type === "vote_majorite") {
                 row.addComponents(
                     new MessageButton()
                     .setCustomId((index + 1).toString())
-                    .setLabel(`Choix ${index + 1}`)
+                    .setLabel(liste_choix[index].toString())
                     .setStyle('PRIMARY')
                     .setEmoji(emoji_choix[index])
                 )
-            } else {
+            }
+        } else {
                 index = liste_choix.length;
             }
         }
@@ -94,12 +141,8 @@ module.exports = {
         let vote = 0;
         const collector = interaction.channel.createMessageComponentCollector({});
         collector.on('collect', async i => {
-            /*
-            const myDoc = await col.findOne({
-                id: interaction.user.id
-            });*/
+            console.log(i);
             await i.deferReply({ ephemeral: true });
-      //      if (myDoc === null && myDoc.id === null) {
             let verif_col = (await col.find({ id: i.user.id }).count()).toString() === "0";
             console.log((await col.find({ id: i.user.id }).count()).toString());
             console.log(` Est-ce qu'il n'a pas voté ? : ${verif_col}`);
@@ -118,7 +161,15 @@ module.exports = {
                     if (liste_choix[index] !== null) {
                         if (index === parseInt(i.customId) - 1) {
                             total[index] = total[index] + 1;
+                        } else {
+                            if (type === "vote_borda") {
+                            for (let ind = 0; ind < i.values.length; ind++) {
+                                if (liste_choix[index] === i.values[ind]) {
+                                    total[index] = total[index] + 1;
+                                }
+                            } 
                         }
+                    }
                         embedChoix_2.addFields({ name: `Choix ${emoji_choix[index]}`, value: liste_choix[index], inline: true });
                         embedTotal_2.addFields({ name: liste_choix[index], value: total[index].toString() + " votes", inline: true });
                     } else {
