@@ -32,7 +32,8 @@ module.exports = {
         const collector = interaction.channel.createMessageComponentCollector({ time: 15000 });
         collector.on('collect', async i => {
             if (i.customId === 'CONFIRMER') {
-                await interaction.followUp(string);
+                const channel = i.member.user.client.channels.cache.get(i.channelId);
+                channel.send(string);
             } else if (i.customId === "ANNULER") {
                 await interaction.followUp({ content: `Bon ben au revoir...`, ephemeral: true});
             }
