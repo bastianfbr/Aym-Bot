@@ -45,7 +45,7 @@ module.exports = {
 
         } else if (interaction.isSelectMenu()) {
             // si un menu est utilisé en dehors du channel tests-bots-stage, ne rien faire
-            if (interaction.channelId !== "936928081409613840") return;
+            if (interaction.channelId !== "936928080193265698") return;
             // chercher le rôle correspondant à la valeur du menu
             if (interaction.customId === 'niveau') {
                 const r = interaction.guild.roles.cache.find((r) => r.name === interaction.values.toString());
@@ -63,9 +63,9 @@ module.exports = {
                     }
                 }
                 member.roles.add(r);
-                await interaction.reply({ content: `<a:check:709042204479324190> Le rôle <@&${r.id}> vous a été ajouté`, ephemeral: true, components: [] });
+                await interaction.reply({ content: `<a:check:937407397050335272> Le rôle <@&${r.id}> vous a été ajouté`, ephemeral: true, components: [] });
                 if (rep !== 0) {
-                    await interaction.followUp({ content: `<a:cross:709042197697265685> Le rôle<@&${rem}> vous a été retiré`, ephemeral: true, components: [] });
+                    await interaction.followUp({ content: `<a:cross:937407398119899187> Le rôle<@&${rem}> vous a été retiré`, ephemeral: true, components: [] });
                 }
             }
         }
