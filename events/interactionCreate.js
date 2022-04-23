@@ -8,9 +8,8 @@ module.exports = {
         if (interaction.isCommand()) {
 
             const command = interaction.client.commands.get(interaction.commandName);
-            let cmd_mod = ["mod"];
             // si c'est une commande de modération et que le membre n'a pas les perms de gestion de rôles (modos)
-            if ((command.data.name === "mod") && (!interaction.memberPermissions.has("MANAGE_ROLES"))) {
+            if ( ((command.data.name === "mod") || (command.data.name === "test") )&& (!interaction.memberPermissions.has("MANAGE_ROLES"))) {
                 await interaction.reply({ content: "Tu n'es pas un modérateur, fais pas n'importe quoi !", ephemeral: true });
                 return;
             }
