@@ -19,7 +19,7 @@ module.exports = {
         // Rappel pour voter le référencement du serveur sur Disboard
         setInterval(() => {
             bots.send(`
-Hey ! N'oublie pas que tu peux effectuer la commande **!d bump** et **d! bump**. Cela permet de mieux référencer le serveur sur le site *https://disboard.org/* et *https://fr.discordinvites.net/* ! Merci à tous ceux qui le feront :heart:`);
+Hey ! N'oublie pas que tu peux effectuer la commande /bump. Cela permet de mieux référencer le serveur sur le site *https://disboard.org/* et *https://fr.discordinvites.net/* ! Merci à tous ceux qui le feront :heart:`);
             if (date_now_m === date_after) {
                 date_now = moment();
                 date_now_m = date_now.clone().format('L');
