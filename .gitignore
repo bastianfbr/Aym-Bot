@@ -11,3 +11,7 @@ misc/
 
 config.json
 deploy-commands.js
+
+#IDE files
+.idea
+.vscode
