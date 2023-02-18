@@ -113,7 +113,7 @@ Les demandes inopinées d’aide en MP pourront être sanctionnées.`
                 {
                     name: "6️⃣ Publicités et Partenariats",
                     value: `Concernant les publicités, celles-ci peuvent être acceptées si elles sont motivées et validées auprès du Staff. Elles seront alors publiées dans vos-projets.
-Vous pouvez contacter n’importe quel membre du staff (<@&936928079996153864>, <@&936928080012906558> ou <@&936928080012906559>)
+Vous pouvez contacter n’importe quel membre du staff (<@&936928079996153864> ou <@&936928080012906559>)
 
 Concernant les partenariats, il faudra suivre une autre démarche. Nous vous demandons alors de contacter le <@&936928080012906559> en présentant de manière motivée votre projet.`
                 },
