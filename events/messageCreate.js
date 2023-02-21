@@ -113,7 +113,7 @@ Les demandes inopinées d’aide en MP pourront être sanctionnées.`
                 {
                     name: "6️⃣ Publicités et Partenariats",
                     value: `Concernant les publicités, celles-ci peuvent être acceptées si elles sont motivées et validées auprès du Staff. Elles seront alors publiées dans vos-projets.
-Vous pouvez contacter n’importe quel membre du staff (<@&936928079996153864>, <@&936928080012906558> ou <@&936928080012906559>)
+Vous pouvez contacter n’importe quel membre du staff (<@&936928079996153864> ou <@&936928080012906559>)
 
 Concernant les partenariats, il faudra suivre une autre démarche. Nous vous demandons alors de contacter le <@&936928080012906559> en présentant de manière motivée votre projet.`
                 },
@@ -129,15 +129,6 @@ Après 3 avertissements, le-a membre s’expose à un bannissement.
 
 Toute sanction appliquée par le staff est concertée et justifiée par le règlement.
 Cependant, ne pouvant pas traduire toutes les situations possibles dans un règlement, le staff se réserve le droit de sanctionner pour une raison non mentionnée ici après concertation de manière juste et proportionnelle à la faute commise.`
-                },
-                {
-                    name: "8️⃣ Association, adhésion et documents officiels",
-                    value: `Ce Discord est le Discord officiel de l’Association Aym’aide. 
-
-Vous pouvez retrouver certaines informations sur https://aymaide.fr/
-Également, c’est là-bas que vous retrouverez le formulaire d’adhésion (simple membre associatif) ou encore le formulaire de recrutement pour devenir <@&936928079996153857> (adhésion obligatoire, aidant reconnu-e par l’Association ayant un poids associatif).
-
-Pour plus d’informations ou encore toute demande de documents, merci de vous adresser au <@&936928080012906559> ou d’envoyer un mail à assoaymaide@gmail.com .`
                 }
             )
         const row1 = new MessageActionRow()
